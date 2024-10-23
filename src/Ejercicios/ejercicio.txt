@@ -1,0 +1,12 @@
+Ejercicios 1
+
+Crear dos hilos en JAVA. El primer hilo debe de contar del 1 al 5.
+El segundo hilo debe de contar del 6 al 10.
+Ambos hilos deben de hacer una pausa de 1s entre cada número y mostrar 
+el número que está imprimiendo.
+
+Ejercicios 2
+
+Crear un programa en JAVA con dos hilos que compartan una misma variable entera (Contador).
+Un hilo debe de incrementar el contador y el otro hilo debe de decrementarlo.
+Usa synchronized para resolverlo.
