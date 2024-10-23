@@ -22,7 +22,6 @@ public class Ejercicio2 {
 
         Thread hilo1 = new Thread(() -> {
             for (int i = 1; i <= 5 ; i++) {
-                conta
                 System.out.println("Hilo 1 :" + i);
             }
         });
