@@ -9,22 +9,23 @@ public class Estacionamiento {
         this.cantidadActual = cantidadActual;
     }
 
-    public void entrarVehiculo(){
-        if (cantidadActual < capacidadMaxima){
-            cantidadActual++;
-            System.out.println("Vehiculo entrado al estacionamiento. Cantidad actual: " + cantidadActual);
-        } else {
-            System.out.println("Estacionamiento lleno. Esperando a que otro vehículo abandone el estacionamiento");
+    public synchronized void entrarVehiculo() throws InterruptedException {
+        while (cantidadActual >= capacidadMaxima){
+            System.out.println("Aparcamiento lleno. Esperando a que haya una plaza libre");
+            wait();
         }
+        cantidadActual++;
+        System.out.println("El vehiculo ha entrado. Capacidad Actual: " + (capacidadMaxima - cantidadActual));
+        notifyAll();
     }
 
-    public void salirVehiculo(){
-        if (cantidadActual > 0){
+    public synchronized void salirVehiculo() throws InterruptedException {
+
+            // Se quita un vehículo
             cantidadActual--;
-            System.out.println("Vehiculo salido del estacionamiento. Cantidad actual: " + cantidadActual);
-        } else {
-            System.out.println("No hay vehículos en el estacionamiento");
-        }
+            System.out.println("Vehículo salió. Capacidad actual: " + (capacidadMaxima - cantidadActual));
+            notifyAll(); // Notifica a otros hilos
+
     }
 
     public int getCapacidadMaxima() {
